@@ -15,8 +15,8 @@ import pandas as pd
 
 
 root = Tk()
-root.title("Ghanendra... ")
-root.iconbitmap('C:/Users/Ghanendra/PycharmProjects/pythonProject/c_project/gk.ico')
+root.title("<title of the project>")
+root.iconbitmap('<address of the icon file>')
 root.geometry("1520x820")
 #root.resizable(width=0, height=0)
 
@@ -34,7 +34,7 @@ label2 = Label(frame4, text="Scrapped Data...", font=("Helvetica", 24))
 label2.grid(row=0, column=0, pady=5, sticky=W, columnspan=3)
 
 global collage_name
-college_name = "Maulana Azad National Institute of Technology"
+college_name = "<collage name>"
 driver = None
 def upload():
     global filename
@@ -46,8 +46,8 @@ def upload():
         def login():
             driver.get("https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin")
             elem = driver.find_element_by_id("username")
-            elem.send_keys("Linkedinprofile008@gmail.com")
-            password = "Linkedin008"
+            elem.send_keys("<username of LinkedIn>")
+            password = "<password>"
             elem2 = driver.find_elements_by_id('password')
             elem2[0].send_keys(password)
             driver.find_element_by_tag_name('button').click()
@@ -59,10 +59,10 @@ def upload():
 
 
 db = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        passwd="Tinu@2001",
-        database="student_info"
+        host="<localhost>",
+        user="<user>",
+        passwd="<password>",
+        database="<name of database>"
     )
 mycursor = db.cursor()
 
@@ -77,12 +77,12 @@ def store(dict, linkurl, fullname):
     global mycursor
     mycursor = db.cursor()
     insert1 = (
-            "INSERT INTO student(stuID,stuname,curr_status,linkedinlink)"
+            "INSERT INTO student(stuID,stuname,curr_status,linkedinlink)"// you have to use the name of table that is in your data base
             "VALUES (%s, %s, %s, %s)"
     )
     data1 = (num, dict['t1'][0], dict['t1'][1], linkurl)
     insert2 = (
-            "INSERT INTO stu_education(stuname,institute)"
+            "INSERT INTO stu_education(stuname,institute)"// same you have to use your table
             "VALUES (%s, %s)"
         )
     mycursor.execute(insert1, data1)
@@ -148,7 +148,7 @@ def extract_names(filename):
         first_name = fullname[0:ind]
         sir_name = fullname[ind + 1:]
         driver.get(
-            f"https://www.linkedin.com/search/results/people/?keywords={first_name}%20{sir_name} Maulana&origin=CLUSTER_EXPANSION")
+            f"https://www.linkedin.com/search/results/people/?keywords={first_name}%20{sir_name} <you have to enter some keyword for searching of your institution>&origin=CLUSTER_EXPANSION")
         time.sleep(1)
         ans = driver.find_elements_by_css_selector('.pb3 .t-16 a')
         i = 0
@@ -203,7 +203,7 @@ my_tree2 = ttk.Treeview(tree_frame2)
 def file_open():
     global filename
     filename = filedialog.askopenfilename(
-        initialdir ="C:/Users/Ghanendra/",
+        initialdir ="<address of your file manager>",
         title = "Open A File",
         filetype=(("xlsx files", "*.xlsx"), ("All Files", "*.*"))
     )
@@ -269,7 +269,7 @@ def clear_tree1():
 result = list()
 def show_data(exl_file):
 
-    exl_path = "C:/Users/Ghanendra/PycharmProjects/pythonProject/c_project/downloaded_data/" + exl_file
+    exl_path = "<path of file that is saved in filemanager using save file function>" + exl_file
     df2 = pd.read_excel(exl_path)
 
     clear_tree2()
@@ -356,7 +356,7 @@ def write_to_csv(result):
             w.writerow(record)
 
 
-    csvfile = "C:/Users/Ghanendra/PycharmProjects/pythonProject/c_project/downloaded_data/" + csv_file
+    csvfile = "<path of file that is saved in filemanager using save file function>" + csv_file
 
     convert(csvfile)
 
@@ -375,12 +375,12 @@ label3.grid(row=0, column=0, pady=5, sticky=W)
 
 
 
-open_btn = PhotoImage(file='C:/Users/Ghanendra/PycharmProjects/pythonProject/c_project/image_data/index1.png')
+open_btn = PhotoImage(file='<address of photo image of file open button>')
 img_lable1 = Label(image=open_btn)
 b= Button(frame1, image=open_btn, command=file_open, borderwidth=0)
 b.grid(row=2, column=1, pady=60)
 
-upload_btn = PhotoImage(file='C:/Users/Ghanendra/PycharmProjects/pythonProject/c_project/image_data/upload.png')
+upload_btn = PhotoImage(file='<address of upload button image>')
 img_lable2 = Label(image=upload_btn)
 upload_Button = Button(frame1, image=upload_btn, borderwidth=0, command=upload)
 upload_Button.grid(row=5, column=1, pady=40)
@@ -410,14 +410,14 @@ entry.grid(row = 4, column = 0)
 entry.get()
 
 
-quit_btn = PhotoImage(file='C:/Users/Ghanendra/PycharmProjects/pythonProject/c_project/image_data/cancel.png')
+quit_btn = PhotoImage(file='<address of cancel button image>')
 img_lable5 = Label(image=quit_btn)
 quit_Button = Button(frame2, image = quit_btn, borderwidth=0, command=my_delete)
 quit_Button.grid(row=6, column=0, pady=50)
 
 
 
-download_btn = PhotoImage(file='C:/Users/Ghanendra/PycharmProjects/pythonProject/c_project/image_data/d.png')
+download_btn = PhotoImage(file='<address of download button image>')
 img_lable4 = Label(image=download_btn)
 Download_Button2 = Button(frame2, image=download_btn, borderwidth=0, command=lambda:write_to_csv(result))
 Download_Button2.grid(row=4, column=1, pady=10)
