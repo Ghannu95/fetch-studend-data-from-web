@@ -6,3 +6,7 @@ To do this project we use selenium as scrapping tool which scrape students data 
 We made a interactive GUI using Tkinter(Python) which is the large part of the project.
 
 We use MySQL to store scrapped data in the Database(You have to use your own database). 
+
+KINDELY USE YOUR OWN DATABASE INFORMATION. I HAVE INDICATED THE FIELDS WITH <...> SIGN.
+
+THANK YOU.
